@@ -1,9 +1,11 @@
+import getVocabs from '../api/vocabData';
 import logoutButton from '../components/buttons/logoutButton';
 import domBuilder from '../components/shared/domBuilder';
 import navBar from '../components/shared/navBar';
 import domEvents from '../events/domEvents';
 import formEvents from '../events/formEvents';
 import navigationEvents from '../events/navigationEvents';
+import { showVocabs } from '../pages/vocabs';
 
 const startApp = () => {
   domBuilder(); // BUILD THE DOM
@@ -12,6 +14,9 @@ const startApp = () => {
   navBar(); // DYNAMICALLY ADD THE NAV
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
   navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
+
+  // TODO: Put all books on the DOM on App load
+  getVocabs().then((vocabs) => showVocabs(vocabs));
 };
 
 export default startApp;
